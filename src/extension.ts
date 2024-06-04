@@ -1,12 +1,12 @@
 import { ExtensionContext, window } from "vscode";
-import { RegexrockProvider } from "./panels/HelloWorldPanel";
+import { RegexrockProvider } from "./panels/regexrock-provider";
 
 export function activate(context: ExtensionContext) {
   const provider = new RegexrockProvider(context.extensionUri);
-  const weatherViewDisposable = window.registerWebviewViewProvider(
+  const regexrockViewDisposable = window.registerWebviewViewProvider(
     RegexrockProvider.viewType,
     provider
   );
 
-  context.subscriptions.push(weatherViewDisposable);
+  context.subscriptions.push(regexrockViewDisposable);
 }

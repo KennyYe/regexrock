@@ -1,21 +1,35 @@
+import React from "react";
 import { vscode } from "./utilities/vscode";
-import { VSCodeButton } from "@vscode/webview-ui-toolkit/react";
-import "./App.css";
+import { RegexItem } from "./components/regex-item";
+import { Header } from "./components/header";
 
-function App() {
-  function handleHowdyClick() {
+const exampleData = [
+  {
+    name: "Search external imports",
+    regex: "^(?d{3})?[-.s]?d{3}[-.s]?d{4}$",
+  },
+  {
+    name: "Find prop name",
+    regex: "^(?d{3})?[-.s]?d{3}[-.s]?d{4}$",
+  },
+];
+
+const App = () => {
+  const handleHowdyClick = () => {
     vscode.postMessage({
       command: "hello",
       text: "Hey there partner! 🤠",
     });
-  }
+  };
 
   return (
     <main>
-      <h1>Hello World!2</h1>
-      <VSCodeButton onClick={handleHowdyClick}>Howdy!</VSCodeButton>
+      <Header />
+      {exampleData.map((data) => (
+        <RegexItem {...data} />
+      ))}
     </main>
   );
-}
+};
 
 export default App;
